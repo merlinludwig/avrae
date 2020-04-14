@@ -5,9 +5,11 @@
 {{ PARGS = argparse(ARGS) }}
 {{ NL = '\n' }}
 {{ TB = '\t' }}
+{{ RAW = get_raw() }}
 #misc modifiers
-{{ HALFLING = PARGS.last('half',False) }}
+{{ HALFLING = True if RAW.race.lower().find('halfling') != -1 else PARGS.last('half',False) }}
 {{ LUCKY = PARGS.last('luck',False) }}
+{{ TEST = PARGS.last('test',False) }}
 {{ ADV = PARGS.adv() }}
 #activity selection
 {{ activity = ARGS.pop(0) if len(ARGS) > 0 else '' }}
@@ -16,8 +18,8 @@
 #set title and description
 {{ title = ACTS[activity].title }}
 {{ desc = ACTS[activity].desc }}
-{{ fields = [f'Resources|{ACTS[activity].resources}',f'Resolution|{ACTS[activity].resolution}',f'Usage|{ACTS[activity].usage}'] }}
-{{ footer = f"COMMAND USED: !downtime {activity} {' '.join(ARGS)}" }}
+{{ fields = [f'Resources|{ACTS[activity].resources}',f'Resolution|{ACTS[activity].resolution}',f'Usage|!downtime \'{title.lower()}\' {ACTS[activity].usage}'] }}
+{{ footer = f"COMMAND USED: !downtime \'{title.lower()}\' {' '.join(ARGS)}" }}
 
 ##CLEANUP AND DISPLAY##
 {{ f'-title "{title}"' }}

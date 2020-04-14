@@ -1,4 +1,4 @@
-!alias dtn tembed
+!alias downtime tembed
 #get functions
 {{ GVARS = load_json(get_gvar('f1bd7105-2af1-4794-9747-33b96cd3e977')) }}
 #initialize function constants
