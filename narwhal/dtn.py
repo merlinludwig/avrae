@@ -8,9 +8,9 @@
 {{ get_gvar(GVARS.setup) }}
 #get user function selection
 {{ args = &ARGS& }}
-{{ activity = args.pop(0) if len(args) > 0 else '' }}
+{{ activity = args.pop(0) if len(args) > 0 else '?' }}
 {{ activity = activity.lower() }}
-{{ activity = int(activity) if activity.isdigit() else max([ a.index if activity == a.title.lower() else 0 for a in activities ]) }}
+{{ activity = int(activity) if activity.isdigit() else max([ a.index if activity in a.title.lower() else 0 for a in activities ]) }}
 #call selected function
 {{ get_gvar(GVARS.get(activities[activity].title.lower())) }}
 #call display
