@@ -10,16 +10,21 @@ embed = {'title':[],
 	'timeout':[]}
 
 stack = []
-stack.append(['main'])
+return_val = []
+stack.append(['main',0])
 
 while stack:
     call = stack.pop()
     
     if call[0] == 'main':
-        stack.append(['display'])
+        if call[1] == 0:
+            stack.append(['main',1])
+            stack.append(['display',0])
+        if call[1] == 1:
         continue
         
     if call[0] == 'display':
+        return f'-desc "{embed}"'
         display_string = ''
         for k,v in embed:
             if k == 'fields':
