@@ -21,21 +21,22 @@ while stack:
             stack.append(['main',1])
             stack.append(['display',0])
         if call[1] == 1:
+            pass
         continue
         
     if call[0] == 'display':
-        return f'-desc "{embed}"'
         display_string = ''
-        for k,v in embed:
-            if k == 'fields':
-                for f in embed.fields:
-                    if f[2]:
-                        display_string += f'-f "{f[0]}|{f[1]}|inline"\n'
-                    else:
-                        display_string += f'-f "{f[0]}|{f[1]}"\n'
-            elif k == 'timeout':
-                display_string += f'-t "{v[0]}"\n'
-            else:
-                display_string += f'-{k} "{v[0]}"\n'
+        for key in embed:
+            if embed[key]:
+                if key == 'fields':
+                    for f in embed.fields:
+                        if f[2]:
+                            display_string += f'-f "{f[0]}|{f[1]}|inline"\n'
+                        else:
+                            display_string += f'-f "{f[0]}|{f[1]}"\n'
+                elif key == 'timeout':
+                    display_string += f'-t "{embed[key][0]}"\n'
+                else:
+                    display_string += f'-{key} "{embed[key][0]}"\n'
         return display_string
 </drac2>
